@@ -1,47 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
-    <title>Test New Window Links</title>
-    <style>
-      body {
-        background-color: white;
-        font-family: Arial, Helvetica, sans-serif;
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+  <title>Test New Window Links</title>
+  <style>
+    body {
+      background-color: white;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .liclicker {
+      list-style-type: none;
+      list-style-position: outside;
+      margin: 10px 8px 10px 8px;
+      padding: 0px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .liclicker li {
+      cursor: pointer;
+      padding: 8px 8px;
+      background-color: #F8F8F8;
+      margin-bottom: 3px;
+      color: #000000;
+      font-family: 'Proxima Nova', sans-serif;
+      font-weight: 600;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .liclicker li a {
+      color: #000000;
+      font-weight: lighter;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .liclicker li.active {
+      background-color: #0835DB;
+    }
+
+    .liclicker li.active a {
+      color: #FFFFFF;
+    }
+
+    .liclicker li a:link {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .liclicker li:hover {
+      background: #FFFFFF;
+    }
+
+    .liclicker li:hover a {
+      color: #000000;
+    }
+
+    .liclicker li a:hover {
+      text-decoration: none;
+    }
+
+    .liclicker li a:active {
+      text-decoration: none;
+      background-color: #0835DB;
+      color: #FFFFFF;
+    }
+  </style>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript">
+    $('.liclicker a').click(function (e) {
+      e.preventDefault();
+    });
+
+    $('.liclicker li').click(function () {
+      if ($(this).find(':first-child').attr('target') !== "_blank") {
+        window.location = $(this).find(':first-child').attr('href');
+      } else {
+        window.open($(this).find(':first-child').attr('href'));
       }
-      </style>
+    });
+  </script>
+</head>
 
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-      <script type="text/javascript">
-        $('.liclicker a').click(function (e) {
-            e.preventDefault();
-        });
+<body>
+  <ul>
+    <li><a href="samplelist.html">Normal link</a></li>
+    <li><a href="samplelist.html" target="_blank">Link in new window</a></li>
+    <li><a href="samplelist.html" target="_blank" rel="noopener">Link in new window, rel noopener</a></li>
+    <li><a href="#" onclick="window.open('samplelist.html');">Javascript opens a new window</a></li>
+  </ul>
 
-        $('.liclicker li').click(function () {
-            if ($(this).find(':first-child').attr('target') !== "_blank") {
-                window.location = $(this).find(':first-child').attr('href');
-            } else {
-                window.open($(this).find(':first-child').attr('href'));
-            }
-        });
-      </script>
-    </head>
-  <body>
-    <ul>
-      <li><a href="samplelist.html">Normal link</a></li>
-      <li><a href="samplelist.html" target="_blank">Link in new window</a></li>
-      <li><a href="samplelist.html" target="_blank" rel="noopener">Link in new window, rel noopener</a></li>
-      <li><a href="#" onclick="window.open('samplelist.html');">Javascript opens a new window</a></li>
-    </ul>
-    <br>
-    Special menu clicker class:
-    <ul class="liclicker">
-      <li><a href="samplelist.html">Normal link</a></li>
-      <li><a href="samplelist.html" target="_blank">Link in new window</a></li>
-      <li><a href="samplelist.html" target="_blank" rel="noopener">Link in new window, rel noopener</a></li>
-      <li><a href="#" onclick="window.open('samplelist.html');">Javascript opens a new window</a></li>
-    </ul>
-  </body>
+  <br>
+
+  Special menu clicker class:
+  <ul class="liclicker">
+    <li><a href="samplelist.html">Normal link</a></li>
+    <li><a href="samplelist.html" target="_blank">Link in new window</a></li>
+    <li><a href="samplelist.html" target="_blank" rel="noopener">Link in new window, rel noopener</a></li>
+    <li><a href="#" onclick="window.open('samplelist.html');">Javascript opens a new window</a></li>
+  </ul>
+
+  <br>
+
+  Button:
+  <button id="buttonclicker">Button</button>
+
+  <script>
+    document.getElementById("buttonclicker").addEventListener("click", buttonclickerFunction);
+
+    function buttonclickerFunction() {
+      window.open('samplelist.html');
+    }
+  </script>
+</body>
+
 </html>
