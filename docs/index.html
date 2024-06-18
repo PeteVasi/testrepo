@@ -108,14 +108,19 @@
 
   <br>
 
-  Button:
-  <button id="buttonclicker">Button</button>
+  Button:<br>
+  <button id="buttonclicker">Link Button</button><br>
+  <button id="buttonalert">Alert Button</button><br>
 
   <script>
     document.getElementById("buttonclicker").addEventListener("click", buttonclickerFunction);
+    document.getElementById("buttonalert").addEventListener("click", buttonalertFunction);
 
     function buttonclickerFunction() {
       window.open('samplelist.html');
+    }
+    function buttonalertFunction() {
+      alert("This is an alert!");
     }
   </script>
 </body>
